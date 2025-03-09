@@ -1,0 +1,35 @@
+@mixin CommonFormStyles() {
+  border: RemCalculator(1) solid var(--border);
+  outline: none;
+  font-family: inherit;
+  background: var(--primary__color);
+}
+
+input {
+  font-family: monospace !important;
+  font-size: RemCalculator(32) !important;
+  @include CommonFormStyles();
+  width: 100%;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--secondary__color) !important;
+  }
+
+  &:focus-within {
+    outline: var(--theme__iv) solid RemCalculator(2);
+  }
+
+  &::placeholder { opacity: .4; }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,78 @@
+@mixin DynamicButton($defaultColor, $animatedColor, $fontColor) {
+  position: relative;
+  background: $defaultColor;
+  overflow: hidden;
+  z-index: 1;
+  border: RemCalculator(1) solid $fontColor;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $animatedColor;
+    transform: translate(-120%, 0);
+    z-index: -1;
+    transition: .3s ease;
+  }
+
+  &:hover {
+    p { color: $fontColor; }
+    svg { fill: $fontColor !important; }
+    color: $fontColor;
+    &::before { transform: translate(0); }
+  }
+}
+@mixin StaticButton($borderColor, $hoverColor) {
+  border: RemCalculator(1) solid $borderColor;
+  transition: .2s ease;
+  &:hover { background: $hoverColor; }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: inherit;
+  font-family: inherit;
+
+  &:hover { cursor: pointer; }
+}
+
+button,
+a {
+  &.primary__button--i { background: var(--secondary__color); }
+
+  &.primary__button--ii {
+    @include DynamicButton(inherit, var(--secondary__color), var(--gray))
+  }
+
+  &.secondary__button--i {
+    transition: .2s ease;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--secondary__color);
+    }
+  }
+
+  &.secondary__button--ii {
+    transition: .2s ease;
+    &:hover { background: var(--gray); }
+  }
+
+  &.utility__button { @include StaticButton(var(--theme__iii), var(--gray)); }
+  &.danger__button { @include StaticButton(var(--theme__ii), var(--gray)); }
+}
+
+button:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  user-select: none;
+}

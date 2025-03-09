@@ -1,0 +1,59 @@
+.overlay__hidden { opacity: 0; pointer-events: none; }
+.content__hidden { scale: .9; }
+
+.overlay__visible { opacity: 1; pointer-events: all; }
+.content__visible { scale: 1; }
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  @extend .w__max;
+  @extend .h__max;
+  @extend .flex__col;
+  @extend .align__center;
+  @extend .justify__center;
+  background: var(--overlay);
+  z-index: $zIndexPeakLevel;
+  -webkit-overflow-scrolling: touch;
+  @extend .overlay__hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backdrop-filter: blur(RemCalculator(4.5));
+    backdrop-filter: blur(RemCalculator(4.5));
+    z-index: -1;
+  }
+
+  &.overlay__visible { @extend .overlay__visible; }
+
+  @include MediaBreakPoint(largeMobile) {
+    top: unset !important;
+    bottom: 0;
+    justify-content: flex-end !important;
+  }
+}
+
+.modal__content {
+  background: var(--primary__color);
+  width: RemCalculator(256*3);
+  max-height: 90%;
+  overflow-y: auto;
+  transition: .3s ease;
+  scrollbar-color: var(--border) transparent;
+
+  @include MediaBreakPoint(ultrawide) { width: RemCalculator(256*3.5); }
+  @include MediaBreakPoint(tablet) { width: 75%; }
+  @include MediaBreakPoint(largeMobile) {
+    max-width: unset !important;
+    width: 100%;
+    border-radius: RemCalculator(16) RemCalculator(16) 0 0 !important;
+  }
+  @extend .content__hidden;
+  &.content__visible { @extend .content__visible; }
+}

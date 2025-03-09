@@ -1,0 +1,9 @@
+.spinner {
+  border-bottom: 2px solid transparent !important;
+  animation: Spin 1s infinite linear;
+}
+
+@keyframes Spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
