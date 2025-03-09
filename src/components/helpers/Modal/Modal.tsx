@@ -29,6 +29,7 @@ function Modal({
             onClick={HandleClick}
             id={"modal--overlay"}
             aria-label={"Modal overlay"}
+            data-test-id={"calculator__modal"}
         >
             <div
                 className={`modal__content p__24 flex__col g__32 ${visible ? "content__visible" : ""} rounded__8`}
@@ -42,7 +43,7 @@ function Modal({
                         className={"flex__col align__center justify__center"}
                         onClick={() => ToggleVisibility()}
                         aria-label={"Close modal"}
-                        data-name={"close__modal"}
+                        data-test-id={"close__modal"}
                     >
                         <Close width={16*1.35} height={16*1.35} fill={"var(--secondary__color)"} />
                     </Button>

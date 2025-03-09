@@ -3,7 +3,7 @@
     "types": ["cypress"],
     "baseUrl": ".",
     "paths": {
-      "@note/*": ["src/*"]
+      "ct.frontend/*": ["src/*"]
     }
   }
 }

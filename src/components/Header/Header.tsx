@@ -3,7 +3,10 @@ import Button from "ct.frontend/components/helpers/Button/Button";
 
 function Header(): Readonly<ReactNode> {
     return (
-        <div className={"p__16"}>
+        <div
+            className={"p__16"}
+            data-test-id={"home__page__header"}
+        >
             <div
                 className={"container__md border__b--1 flex__row m__flex--col align__center m__align--start justify__between g__32 p__b--8"}>
                 <p className={"color__secondary"}>{"Calculator Test"}</p>

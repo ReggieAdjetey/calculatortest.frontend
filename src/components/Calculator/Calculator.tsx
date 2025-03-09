@@ -17,6 +17,7 @@ function Calculator(): Readonly<ReactNode> {
                     padding: {x: 24, y: 16}
                 })}`}
                 onClick={ToggleModal}
+                data-test-id={"calculator__cta"}
             >
                 <p className={"color__light"}>{"Get started"}</p>
             </Button>

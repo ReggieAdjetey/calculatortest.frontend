@@ -28,9 +28,6 @@ graph TD
 ## Deployment Strategy
 ```mermaid
 graph LR
-    A[Repository Update] --> B[Triggers]
-    B --> C[CI Workflow]
-    C --> D[Run Unit Tests]
-    D --> E[Run E2E Tests]
-    E --> F[Build and Deploy to Vercel]
+    A[Run Unit Tests] --> B[Run E2E Tests]
+    B --> C[Build and Deploy to Vercel]
 ```

@@ -111,6 +111,7 @@ function Form(): Readonly<ReactNode> {
                             })}`}
                             type={"button"}
                             onClick={() => ToggleOperation(x)}
+                            data-test-id={x}
                         >
                             {
                                 x === "add" ?
@@ -142,7 +143,10 @@ function Form(): Readonly<ReactNode> {
             </div>
             {
                 (responseObject && responseObject.status === 200) &&
-                <div className={"border__2 h__50 rounded__8 flex__col align__center justify__center"}>
+                <div
+                    className={"border__2 h__50 rounded__8 flex__col align__center justify__center"}
+                    data-test-id={"calculator__answer"}
+                >
                     <h1 className={"color__secondary"}>{responseObject?.message}</h1>
                 </div>
             }

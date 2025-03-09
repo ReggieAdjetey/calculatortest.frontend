@@ -18,3 +18,27 @@ jobs:
           cache: 'npm'
       - run: npm i
       - run: npm run test:unit:ci
+  E2E-Tests:
+    needs: Unit-Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Start application
+        run: npm run dev &
+        env:
+          API_HOST: ${{ secrets.API_HOST }}
+      - name: Wait for application to be ready
+        run: npx wait-on http://localhost:8002
+      - name: Run E2E tests
+        run: npm run test:e2e:ci
+        env:
+          API_HOST: ${{ secrets.API_HOST }}
+      - name: Upload E2E test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results
+          path: cypress/videos
