@@ -13,10 +13,18 @@ describe("Calculator.cy.ts", () => {
             cy.get(element).should("exist").and("not.be.empty");
 
         for(const inputId of ["start", "amount"])
-            cy.get(`input[id=${inputId}]`).type(`${GetRandomNumber(999, -999)}`)
+            cy.get(`input[id=${inputId}]`).type(`${GetRandomNumber(-9999999999, -9999999999)}`)
 
         const randomNumber = GetRandomNumber(2, 0);
         cy.get(`button[data-test-id=${randomNumber === 1 ? "add" : "subtract"}]`).click();
+
+        cy.get("button[type=submit]").click();
+
+        for(const inputId of ["start", "amount"])
+            cy.get(`label[data-test-id=${inputId + "__error"}]`).should("exist").and("be.visible");
+
+        for(const inputId of ["start", "amount"])
+            cy.get(`input[id=${inputId}]`).clear().type(`${GetRandomNumber(999, -999)}`);
 
         cy.get("button[type=submit]").click();
 

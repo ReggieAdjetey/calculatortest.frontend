@@ -75,11 +75,14 @@ function Form(): Readonly<ReactNode> {
             }
             <div className={"flex__row w__max g__16"}>
                 <div className={"flex__col w__max g__16"}>
-                    <label htmlFor={"start"}>
+                    <label
+                        htmlFor={"start"}
+                        data-test-id={errors.start ? "start__error" : "start__label"}
+                    >
                         <p className={`${errors.start ? "color__danger" : "color__secondary opacity__6"} small`}>{errors.start ? errors.start.message : "(Required)"}</p>
                     </label>
                     <input
-                        className={"h__150 rounded__16 color__secondary text__c"}
+                        className={"h__150 rounded__16 color__secondary text__c p__16"}
                         type="number"
                         {...register("start")}
                         id={"start"}
@@ -88,11 +91,14 @@ function Form(): Readonly<ReactNode> {
                     />
                 </div>
                 <div className={"flex__col w__max g__16"}>
-                    <label htmlFor={"amount"}>
+                    <label
+                        htmlFor={"amount"}
+                        data-test-id={errors.amount ? "amount__error" : "amount__label"}
+                    >
                         <p className={`${errors.amount ? "color__danger" : "color__secondary opacity__6"} small`}>{errors.amount ? errors.amount.message : "(Required)"}</p>
                     </label>
                     <input
-                        className={"h__150 rounded__16 color__secondary text__c"}
+                        className={"h__150 rounded__16 color__secondary text__c p__16"}
                         type="number"
                         {...register("amount")}
                         id={"amount"}
